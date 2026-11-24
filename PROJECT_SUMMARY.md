@@ -116,7 +116,7 @@ cd "D:\Sem 5\machine learning\lab\ibm aml project"
 
 ### A. Score a ready-made batch (quickest)
 
-`predict_batch.py` accepts any `.csv` or `.parquet` file that already has the 37 engineered columns:
+`predict_batch.py` accepts any `.csv` or `.parquet` file that already has the 40 engineered columns:
 
 ```powershell
 .\.venv\Scripts\python.exe predict_batch.py `

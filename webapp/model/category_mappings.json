@@ -1,0 +1,63 @@
+{
+  "payment_format": {
+    "ACH": 0,
+    "Bitcoin": 1,
+    "Cash": 2,
+    "Cheque": 3,
+    "Credit Card": 4,
+    "Reinvestment": 5,
+    "Wire": 6
+  },
+  "payment_currency": {
+    "Australian Dollar": 0,
+    "Bitcoin": 1,
+    "Brazil Real": 2,
+    "Canadian Dollar": 3,
+    "Euro": 4,
+    "Mexican Peso": 5,
+    "Ruble": 6,
+    "Rupee": 7,
+    "Saudi Riyal": 8,
+    "Shekel": 9,
+    "Swiss Franc": 10,
+    "UK Pound": 11,
+    "US Dollar": 12,
+    "Yen": 13,
+    "Yuan": 14
+  },
+  "receiving_currency": {
+    "Australian Dollar": 0,
+    "Bitcoin": 1,
+    "Brazil Real": 2,
+    "Canadian Dollar": 3,
+    "Euro": 4,
+    "Mexican Peso": 5,
+    "Ruble": 6,
+    "Rupee": 7,
+    "Saudi Riyal": 8,
+    "Shekel": 9,
+    "Swiss Franc": 10,
+    "UK Pound": 11,
+    "US Dollar": 12,
+    "Yen": 13,
+    "Yuan": 14
+  },
+  "sender_entity_type": {
+    "Corporation": 0,
+    "Country": 1,
+    "Direct": 2,
+    "Individual": 3,
+    "Partnership": 4,
+    "Sole Proprietorship": 5,
+    "__MISSING__": 6
+  },
+  "receiver_entity_type": {
+    "Corporation": 0,
+    "Country": 1,
+    "Direct": 2,
+    "Individual": 3,
+    "Partnership": 4,
+    "Sole Proprietorship": 5,
+    "__MISSING__": 6
+  }
+}
