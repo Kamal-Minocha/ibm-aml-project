@@ -1,4 +1,5 @@
-"""Headless UI tests for webapp/app.py using Streamlit's AppTest.
+"""Headless UI tests for the web app (webapp/app.py + webapp/views/) using
+Streamlit's AppTest.
 
 Run from the project root:  .venv\\Scripts\\python.exe -m pytest webapp/tests
 """
@@ -15,14 +16,25 @@ from streamlit.testing.v1 import AppTest
 WEBAPP = Path(__file__).resolve().parents[1]
 APP = str(WEBAPP / "app.py")
 SAMPLES = WEBAPP / "sample_data"
+PAGE_FILES = {
+    "Overview": "views/overview.py",
+    "Sample Explorer": "views/sample_explorer.py",
+    "Batch Scoring": "views/batch_scoring.py",
+    "Feature Playground": "views/playground.py",
+}
+
+
+def go_to(at: AppTest, page: str) -> AppTest:
+    at.switch_page(PAGE_FILES[page]).run()
+    assert not at.exception, at.exception
+    return at
 
 
 def open_page(page: str) -> AppTest:
     at = AppTest.from_file(APP, default_timeout=120)
     at.run()
-    at.sidebar.radio[0].set_value(page).run()
     assert not at.exception, at.exception
-    return at
+    return go_to(at, page)
 
 
 def metric(at: AppTest, label: str) -> str:
@@ -50,10 +62,8 @@ def test_overview_shows_recomputed_metrics():
 
 def test_sample_explorer_medium_normal_row():
     at = open_page("Sample Explorer")
-    radio = {r.label: r for r in at.radio}
-    radio["Source"].set_value("HI-Medium, Sep 19+ (unseen data)").run()
-    radio = {r.label: r for r in at.radio}
-    radio["Show"].set_value("Normal").run()
+    at.button_group(key="se_source").set_value("HI-Medium, Sep 19+ (unseen data)").run()
+    at.button_group(key="se_show").set_value("Normal").run()
     at.selectbox[0].set_value(5).run()
     assert not at.exception
     assert metric(at, "Dataset label") == "Normal"
@@ -128,8 +138,8 @@ def test_playground_clamps_dependent_counts():
 def test_playground_values_survive_page_switch():
     at = open_page("Feature Playground")
     at.number_input(key="pg_sender_outgoing_count_24h").set_value(17).run()
-    at.sidebar.radio[0].set_value("Overview").run()
-    at.sidebar.radio[0].set_value("Feature Playground").run()
+    go_to(at, "Overview")
+    go_to(at, "Feature Playground")
     assert not at.exception
     assert at.number_input(key="pg_sender_outgoing_count_24h").value == 17
 
@@ -164,3 +174,17 @@ def test_minutes_since_bounded_by_counts():
     assert not at.exception
     # No activity in 24h: the previous activity must be over a day ago.
     assert at.number_input(key="pg_sender_minutes_since").value > 1_440
+
+
+def test_default_page_is_overview():
+    at = AppTest.from_file(APP, default_timeout=120)
+    at.run()
+    assert not at.exception
+    assert metric(at, "PR-AUC") == "0.468"
+
+
+def test_batch_without_labels_shows_counts_only():
+    frame = pd.read_csv(SAMPLES / "quick_demo_mixed_20.csv").drop(columns=["is_laundering"])
+    at = upload(open_page("Batch Scoring"), "unlabelled.csv", frame.to_csv(index=False).encode())
+    labels = {m.label for m in at.metric}
+    assert {"Rows scored", "Alerts"} <= labels and "Precision" not in labels

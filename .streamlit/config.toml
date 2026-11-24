@@ -8,3 +8,29 @@ maxUploadSize = 100
 
 [browser]
 gatherUsageStats = false
+
+# Light and dark themes. Viewers get their system preference by default and
+# can switch in the app's settings menu. Colours come from a palette checked
+# for colour-blind separation and contrast in both modes.
+[theme]
+baseRadius = "medium"
+showWidgetBorder = true
+headingFontWeights = [700, 650, 600, 600, 600, 600]
+
+[theme.light]
+primaryColor = "#2a78d6"
+backgroundColor = "#fcfcfb"
+secondaryBackgroundColor = "#f3f2ee"
+textColor = "#0b0b0b"
+borderColor = "#e1e0d9"
+linkColor = "#256abf"
+chartCategoricalColors = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"]
+
+[theme.dark]
+primaryColor = "#3987e5"
+backgroundColor = "#141413"
+secondaryBackgroundColor = "#1f1f1d"
+textColor = "#f0efec"
+borderColor = "#2c2c2a"
+linkColor = "#6da7ec"
+chartCategoricalColors = ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#0ca30c", "#9085e9", "#e66767"]
