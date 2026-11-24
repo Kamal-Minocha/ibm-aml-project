@@ -1,0 +1,49 @@
+# Python environment and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.code-workspace
+
+# Generated project data and duplicates
+processed/
+processed_medium/
+export_medium_samples/
+
+# Large raw datasets
+HI-Small_Trans.csv
+HI-Small_accounts.csv
+HI-Medium_Trans.csv
+HI-Medium_accounts.csv
+
+# Data, model, and database artifacts
+*.parquet
+*.csv
+*.duckdb
+*.db
+*.sqlite
+*.sqlite3
+
+# Runtime logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local notes and chat exports
+chat-readable.md
+starting.md
