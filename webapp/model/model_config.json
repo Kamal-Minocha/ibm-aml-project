@@ -1,7 +1,5 @@
 {
   "model": "XGBoost",
-  "model_path": "processed\\xgboost_graph_model.json",
-  "feature_data": "processed\\transactions_with_graph_features.parquet",
   "features": [
     "amount_paid",
     "amount_received",
@@ -52,9 +50,6 @@
     "receiver_entity_type"
   ],
   "alert_budget": 1000,
-  "decision_policy": "top_k_scores_per_evaluation_period",
-  "threshold_selected_on": "validation",
-  "threshold": 0.9793708324432373,
   "train_end": "2022-09-07 14:55:00",
   "validation_end": "2022-09-09 03:16:00"
 }

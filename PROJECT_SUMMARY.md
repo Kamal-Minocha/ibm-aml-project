@@ -34,7 +34,7 @@ processed/transactions_with_accounts.parquet
 processed/transactions_with_behavior.parquet
   │  add_graph_features.py      fan-in, fan-out, edge counts, rapid-forwarding indicator
   ▼                             (past 24h only)
-processed/transactions_with_graph_features.parquet   ← 37 model features
+processed/transactions_with_graph_features.parquet   ← 40 model features
   │
   ├─ train_baseline.py [--behavior | --graph]   LightGBM models
   ├─ train_xgboost.py                           XGBoost model (final)

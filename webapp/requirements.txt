@@ -1,5 +1,11 @@
-streamlit>=1.38
-xgboost>=2.0
-pandas>=2.0
-numpy>=1.24
-plotly>=5.20
+# Runtime dependencies of the Streamlit demo (webapp/app.py).
+# Streamlit Community Cloud uses this file because it sits next to the
+# entrypoint; the root requirements.txt is for the data pipeline.
+streamlit>=1.60,<2
+# The bundled model was saved with xgboost 3.4. On Linux (Streamlit Cloud) the
+# CPU-only build avoids a large CUDA/NCCL download; it imports as `xgboost`.
+xgboost-cpu>=3.4,<4; sys_platform == "linux"
+xgboost>=3.4,<4; sys_platform != "linux"
+pandas>=2.2
+numpy>=1.26
+pyarrow>=14        # Parquet uploads

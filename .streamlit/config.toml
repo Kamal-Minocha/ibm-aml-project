@@ -1,0 +1,10 @@
+# Streamlit settings for webapp/app.py. Community Cloud only reads this file
+# from the repository root, even when the app lives in a subdirectory.
+
+[server]
+# Uploads are capped at 200,000 rows in code (webapp/scoring.py); a CSV of
+# that size is roughly 80 MB.
+maxUploadSize = 100
+
+[browser]
+gatherUsageStats = false
